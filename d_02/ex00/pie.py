@@ -21,4 +21,5 @@ plt.pie(
 	labels=df['event_type'],
 	autopct='%1.1f%%'
 )
+
 plt.show()
