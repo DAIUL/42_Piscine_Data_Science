@@ -3,23 +3,29 @@ from sqlalchemy import create_engine
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-engine = create_engine('postgresql+psycopg2://qpuig:mysecretpassword@localhost:5432/piscineds')
 
-query = """
-	select event_type, count(*) as count
-	from customers
-	group by event_type
-	order by count desc;
-"""
+def main():
+	engine = create_engine('postgresql+psycopg2://qpuig:mysecretpassword@localhost:5432/piscineds')
 
-df = pd.read_sql(query, engine)
+	query = """
+		select event_type, count(*) as count
+		from customers
+		group by event_type
+		order by count desc;
+	"""
 
-sns.set_theme(style='whitegrid')
+	df = pd.read_sql(query, engine)
 
-plt.pie(
-	df['count'],
-	labels=df['event_type'],
-	autopct='%1.1f%%'
-)
+	sns.set_theme(style='whitegrid')
 
-plt.show()
+	plt.pie(
+		df['count'],
+		labels=df['event_type'],
+		autopct='%1.1f%%'
+	)
+
+	plt.show()
+
+
+if __name__ == '__main__':
+	main()
