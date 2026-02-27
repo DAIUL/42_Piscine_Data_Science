@@ -60,6 +60,8 @@ def main():
 	sns.set_theme(style='whitegrid')
 
 	sns.lineplot(x=K_range, y=inertias)
+	plt.title("The Elbow Method")
+	plt.xlabel("nb of clusters")
 	plt.show()
 
 
